@@ -1,0 +1,127 @@
+<%-include('header')%>
+
+<!-- <style>
+  td{
+      padding: 20px;
+      text-align: center;
+      
+  }
+</style>
+<%var a=1%>
+<center>
+  <h1>All User Datas</h1>
+  <table border="0">
+      <tr>
+          <td>
+              SR NO.
+          </td>
+          <td>
+              ID
+          </td>
+          <td>
+              NAME
+          </td>
+          <td>
+              EMAIL
+          </td>
+          <td>
+              PHONE
+          </td>
+          <td>
+              PASSWORD
+          </td>
+          <td colspan="3">
+              action
+          </td>
+      </tr>
+      <%for(var i of data){%>
+          <tr>
+              <td>
+                  <%=a++%>
+              </td>
+              <td>
+                  <%=i._id%>
+              </td>
+              <td>
+                  <%=i.name%>
+              </td>
+              <td>
+                  <%=i.email%>
+              </td>
+              <td>
+                  <%=i.phone%>
+              </td>
+              <td>
+                  <%=i.pass%>
+              </td>
+              <td>
+                  <a href="/user/delete/<%=i._id%>"><img height="40px" src="https://cdn-icons-png.flaticon.com/128/3132/3132919.png" alt=""></a>
+              </td>
+              <td>
+                  <a href="/user/update/<%=i.id%>"><img src="https://cdn-icons-png.flaticon.com/512/5278/5278663.png" height="40px" alt="update"></a>
+              </td>
+          </tr>
+      <%}%>
+  </table>
+</center> -->
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>General Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Default Table</h5>
+              <%if(messages.success){%>
+
+                <div class="alert alert-success">
+                  <%=messages.success[0]%>
+                  <%console.log(messages.success[0])%>
+                </div>
+                <%}%> 
+
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <%var a=1%>
+                  <%for(var i of data){%>
+                    <tr>
+                        <th scope="row"><%=a++%></th>
+                        <td><%=i.name%></td>
+                        <td><%=i.email%></td>
+                        <td><%=i.pass%></td>
+                        <td><a href="/admin/update/<%=i.id%>">Update</a> || <a href="/admin/delete/<%=i.id%>">Delete</a></td>
+                      </tr>
+                    <%}%>
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+<%-include('footer')%>
