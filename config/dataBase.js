@@ -2,7 +2,7 @@ const { log } = require('console');
 const mongoose = require('mongoose')
 const db = mongoose.connection
 
-mongoose.connect('mongodb+srv://laxsavani:Laksh4259@cluster0.qakhm9i.mongodb.net/')
+mongoose.connect('mongodb+srv://laxsavani:laxsavani@cluster0.ykxfhke.mongodb.net/admins')
 
 db.once('open',(err)=>{
     if(err)
