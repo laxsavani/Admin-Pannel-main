@@ -26,6 +26,10 @@ app.use((req, res) => {
     res.render('404');
 });
 
+app.get('/', (req, res) => {
+    res.render('/admin/register');
+})
+
 app.listen(port, (error) => {
     if (error) {
         console.log(error);
