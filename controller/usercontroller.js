@@ -39,9 +39,9 @@ exports.registerPost = async (req, res) => {
         res.redirect("back");
       }
     } else {
+      req.flash("success", "Email Aldrady Exist");
       res.redirect("back");
       console.log("Email Aldrady Exist");
-      req.flash("success", "Email Aldrady Exist");
     }
   } catch (error) {
     console.log(error);

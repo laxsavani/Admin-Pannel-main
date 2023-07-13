@@ -21,7 +21,6 @@ const admin_token=async(req,res,next)=>{
          }
          else
          {
-          
             const datas = await admins.findOne({_id:userdata.userId})
             if(datas==null)
             {
