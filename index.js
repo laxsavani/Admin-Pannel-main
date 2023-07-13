@@ -26,7 +26,7 @@ app.use((req, res) => {
     res.render('404');
 });
 
-app.get('/', (req, res) => {
+app.use('/', (req, res) => {
     res.render('/admin/register');
 })
 
