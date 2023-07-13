@@ -22,13 +22,14 @@ app.use('/admin', require('./routes/userrouter'));
 
 require('./config/dataBase')
 
+app.get('/', (req, res) => {
+    console.log("ee");
+    res.redirect('/admin/register');
+})
 app.use((req, res) => {
     res.render('404');
 });
 
-app.get('/', (req, res) => {
-    res.redirect('/admin/register');
-})
 
 app.listen(port, (error) => {
     if (error) {
