@@ -39,9 +39,9 @@ exports.registerPost = async (req, res) => {
         res.redirect("back");
       }
     } else {
-      req.flash("success", "Email Aldrady Exist");
+      req.flash("success", "Email Already Exist");
       res.redirect("back");
-      console.log("Email Aldrady Exist");
+      console.log("Email Already Exist");
     }
   } catch (error) {
     console.log(error);
@@ -103,8 +103,8 @@ exports.updatePost = async (req, res) => {
       res.redirect("back");
     }
   } else {
-    console.log("Email Aldrady Exist");
-    req.flash("success", "Email Aldrady Exist");
+    console.log("Email Already Exist");
+    req.flash("success", "Email Already Exist");
     res.redirect("back");
   }
 };
