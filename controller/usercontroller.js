@@ -84,7 +84,7 @@ exports.update = async (req, res) => {
 };
 exports.updatePost = async (req, res) => {
   var data = await admins.findOne({ email: req.body.email });
-  if (data==null) {
+  if (data == null) {
     var update = await admins.findByIdAndUpdate(req.params.id, req.body);
     if (update) {
       console.log("Data Updated Successfully!!!");
@@ -102,7 +102,6 @@ exports.updatePost = async (req, res) => {
   }
 };
 exports.deletes = async (req, res) => {
-  
   var data = await admins.findByIdAndDelete(req.params.id);
   if (data) {
     console.log("Data Deleted Successfully!!!");
@@ -114,37 +113,30 @@ exports.deletes = async (req, res) => {
     res.redirect("back");
   }
 };
-const nodemailer = require('nodemailer')
-exports.mail = async(req,res)=>{
+const nodemailer = require("nodemailer");
+exports.mail = async (req, res) => {
+  var data = await admins.findById(req.params.id);
 
-  var data=await admins.findById(req.params.id);
+  var transport = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "laxsavani4259@gmail.com",
+      pass: "zypxhxzjudxwvfmu",
+    },
+  });
 
-  for(var i=0;i<=100;i++)
-  {
-    var transport = nodemailer.createTransport({
-      service: "gmail",
-      auth:{
-        user:"laxsavani4259@gmail.com",
-        pass:"zypxhxzjudxwvfmu"
-      }
-    });
+  var otp = Math.floor(100000 + Math.random() * 900000);
+  var info = transport.sendMail({
+    from: "laxsavani4259@gmail.com",
+    to: "forammorsy1806@gmail.com",
+    subject: "OTP",
+    html: `OTP:- ${otp}`,
+  });
+  console.log(otp);
 
-
-    var otp=Math.floor(100000 + Math.random() * 900000)
-    var info = transport.sendMail({
-      from:"laxsavani4259@gmail.com",
-      to:"forammorsy1806@gmail.com",
-      subject:"OTP",
-      html:`OTP:- ${otp}`
-    })
-    console.log(otp);
-  }
-  if(info)
-  {
+  if (info) {
     console.log("OTP Send Successfully");
-  }
-  else
-  {
+  } else {
     console.log("OTP Not Send");
   }
-}
+};
