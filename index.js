@@ -26,8 +26,8 @@ app.use((req, res) => {
     res.render('404');
 });
 
-app.use('/', (req, res) => {
-    res.render('/admin/register');
+app.get('/', (req, res) => {
+    res.redirect('/admin/register');
 })
 
 app.listen(port, (error) => {
