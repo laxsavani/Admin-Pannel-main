@@ -65,7 +65,7 @@ exports.loginPost = async (req, res) => {
 
         var token = await jwt.sign({userId:data._id},process.env.KEY)
         res.cookie("jwt", token, {
-          expires:new Date(Date.now() + 120*1000)
+          expires:new Date(Date.now() + 24*60*60*1000)
         })
 
         res.redirect("/admin/");
