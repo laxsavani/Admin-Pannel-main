@@ -1,7 +1,10 @@
+<%-include('header')%>
+
 <form method="post" action="/admin/update/<%=obj.id%>">
     <label for="chk" aria-hidden="true">Update</label>
     <input type="text" name="name" placeholder="User name" value="<%=obj.name%>">
     <input type="email" name="email" placeholder="Email" value="<%=obj.email%>">
-    <!-- <input type="password" name="pass" placeholder="Password" value="<%=obj.pass%>"> -->
     <button type="submit">Update</button>
 </form>
+
+<%-include('footer')%>
