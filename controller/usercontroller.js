@@ -1,5 +1,6 @@
 const admins = require("../model/admins");
 const express = require("express");
+const jwt = require('jsonwebtoken')
 
 exports.home = (req, res) => {
   res.render("dashboard");
@@ -61,6 +62,12 @@ exports.loginPost = async (req, res) => {
   } else {
     if (email == data.email) {
       if (pass == data.pass) {
+
+        var token = await jwt.sign({userId:data._id},process.env.KEY)
+        res.cookie("jwt", token, {
+          expires:new Date(Date.now() + 120*1000)
+        })
+
         res.redirect("/admin/");
       } else {
         res.redirect("back");

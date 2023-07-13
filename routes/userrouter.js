@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const admin_token = require('../middleware/admin.middleware')
 const {
     home,
     formElenents,
@@ -16,7 +17,7 @@ const {
     mail
 } = require('../controller/usercontroller')
 
-router.get('/', home)
+router.get('/',admin_token, home)
 router.get('/formElenents', formElenents)
 router.get('/tableGeneral', tableGeneral)
 router.get('/profile', profile)
