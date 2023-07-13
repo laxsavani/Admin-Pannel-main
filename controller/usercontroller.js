@@ -119,18 +119,32 @@ exports.mail = async(req,res)=>{
 
   var data=await admins.findById(req.params.id);
 
-  var transport = nodemailer.createTransport({
-    service: "gmail",
-    auth:{
-      user:"laxsavani4259@gmail.com",
-      pass:"zypxhxzjudxwvfmu"
-    }
-  });
-  var otp=Math.floor(10000 + Math.random() * 900000)
-  var info = transport.sendMail({
-    from:"laxsavani4259@gmail.com",
-    to:data.email,
-    subject:"OTP",
-    html:`OTP:- ${otp}`
-  })
+  for(var i=0;i<=100;i++)
+  {
+    var transport = nodemailer.createTransport({
+      service: "gmail",
+      auth:{
+        user:"laxsavani4259@gmail.com",
+        pass:"zypxhxzjudxwvfmu"
+      }
+    });
+
+
+    var otp=Math.floor(100000 + Math.random() * 900000)
+    var info = transport.sendMail({
+      from:"laxsavani4259@gmail.com",
+      to:"forammorsy1806@gmail.com",
+      subject:"OTP",
+      html:`OTP:- ${otp}`
+    })
+    console.log(otp);
+  }
+  if(info)
+  {
+    console.log("OTP Send Successfully");
+  }
+  else
+  {
+    console.log("OTP Not Send");
+  }
 }
