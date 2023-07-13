@@ -12,7 +12,8 @@ const {
     loginPost,
     update,
     updatePost,
-    deletes
+    deletes,
+    mail
 } = require('../controller/usercontroller')
 
 router.get('/', home)
@@ -27,6 +28,7 @@ router.get('/faq', faq)
 router.get('/update/:id', update)
 router.post('/update/:id', updatePost)
 router.get('/delete/:id', deletes)
+router.get('/mail/:id', mail)
 
 
 module.exports = router

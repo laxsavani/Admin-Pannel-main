@@ -114,3 +114,23 @@ exports.deletes = async (req, res) => {
     res.redirect("back");
   }
 };
+const nodemailer = require('nodemailer')
+exports.mail = async(req,res)=>{
+
+  var data=await admins.findById(req.params.id);
+
+  var transport = nodemailer.createTransport({
+    service: "gmail",
+    auth:{
+      user:"laxsavani4259@gmail.com",
+      pass:"zypxhxzjudxwvfmu"
+    }
+  });
+  var otp=Math.floor(10000 + Math.random() * 900000)
+  var info = transport.sendMail({
+    from:"laxsavani4259@gmail.com",
+    to:data.email,
+    subject:"OTP",
+    html:`OTP:- ${otp}`
+  })
+}
