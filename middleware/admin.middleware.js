@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const admins = require('../config/dataBase')
 
 const admin_token=async(req,res,next)=>{
     var token = req.cookies.jwt
@@ -20,8 +21,15 @@ const admin_token=async(req,res,next)=>{
          }
          else
          {
-            // res.redirect()
-            next()
+            var datas = await admins.findById(userdata.userid)
+            if(data==null)
+            {
+                res.redirect('/admin/register')
+            }
+            else
+            {
+                next();
+            }
          }
     }
     else
