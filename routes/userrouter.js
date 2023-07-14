@@ -32,6 +32,11 @@ router.get('/update/:id',admin_token, update)
 router.post('/update/:id',admin_token, updatePost)
 router.get('/delete/:id',admin_token, deletes)
 router.get('/mail/:id',admin_token, mail)
+router.get('/logout',(req,res)=>{
+    res.cookie("jwt","");
+    res.clearCookie();
+    res.redirect('/admin/');
+})
 
 
 module.exports = router
