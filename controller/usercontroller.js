@@ -143,7 +143,11 @@ exports.mail = async (req, res) => {
 
   if (info) {
     console.log("OTP Send Successfully");
+    req.flash("success", "OTP Send Successfully");
+    res.redirect('back')
   } else {
     console.log("OTP Not Send");
+    req.flash("success", "OTP Not Send");
+    res.redirect('back')
   }
 };
