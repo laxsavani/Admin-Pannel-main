@@ -14,7 +14,7 @@ const {
     update,
     updatePost,
     deletes,
-    mail
+    mail,
 } = require('../controller/usercontroller')
 
 router.get('/register', register)
