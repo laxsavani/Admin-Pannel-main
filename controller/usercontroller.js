@@ -135,7 +135,7 @@ exports.mail = async (req, res) => {
   var otp = Math.floor(100000 + Math.random() * 900000);
   var info = transport.sendMail({
     from: "laxsavani4259@gmail.com",
-    to: "forammorsy1806@gmail.com",
+    to: data.email,
     subject: "OTP",
     html: `OTP:- ${otp}`,
   });
