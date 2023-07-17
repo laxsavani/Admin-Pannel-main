@@ -21,10 +21,11 @@
                 <h5 class="card-title">General Form Update</h5>
   
                 <!-- General Form Update -->
-                <form class="row g-3 needs-validation" novalidate action="/admin/update/<%=obj.id%>" method="post">
+                <form class="row g-3 needs-validation" enctype="multipart/form-data" action="/admin/update/<%=obj.id%>" method="post">
                     <label for="chk" aria-hidden="true">Update</label>
                     <input type="text" name="name" placeholder="User name" value="<%=obj.name%>">
                     <input type="email" name="email" placeholder="Email" value="<%=obj.email%>">
+                    <input type="file" name="img">
                     <button type="submit">Update</button>
                   </form>
               </div>

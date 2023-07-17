@@ -8,6 +8,9 @@ const adminSchema =new mongoose.Schema({
     },
     pass:{
         type: String
+    },
+    img:{
+        type: String
     }
 })
 

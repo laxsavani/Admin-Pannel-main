@@ -90,8 +90,10 @@ exports.update = async (req, res) => {
   // console.log(req.parems.id);
 };
 exports.updatePost = async (req, res) => {
-  var data = await admins.findOne({ email: req.body.email });
-  if (data == null) {
+  // var data = await admins.findOne({ email: req.body.email });
+  // if (data == null) {
+
+    console.log(req.file);
     var update = await admins.findByIdAndUpdate(req.params.id, req.body);
     if (update) {
       console.log("Data Updated Successfully!!!");
@@ -102,11 +104,11 @@ exports.updatePost = async (req, res) => {
       req.flash("success", "Data Not Update");
       res.redirect("back");
     }
-  } else {
-    console.log("Email Already Exist");
-    req.flash("success", "Email Already Exist");
-    res.redirect("back");
-  }
+  // } else {
+  //   console.log("Email Already Exist");
+  //   req.flash("success", "Email Already Exist");
+  //   res.redirect("back");
+  // }
 };
 exports.deletes = async (req, res) => {
   var data = await admins.findByIdAndDelete(req.params.id);

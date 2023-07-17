@@ -30,7 +30,6 @@ app.use('/user', require('./routes/userrouter'));
 require('./config/dataBase')
 
 app.get('/', (req, res) => {
-    console.log("ee");
     res.redirect('/user/home');
 })
 app.use((req, res) => {
