@@ -1,9 +1,6 @@
-const multer = require('multer');
-const stroage = multer.diskStorage({})
-const path = require('path')
-
-const upload = multer({
-    stroage: stroage
-})
-
-module.exports=upload
+const multer = require('multer'); 
+const path = require('path'); 
+const storage = multer.diskStorage({}); 
+const upload = multer({ 
+    storage: storage}); 
+    module.exports = upload;

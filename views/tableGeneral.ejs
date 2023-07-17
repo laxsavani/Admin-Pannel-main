@@ -36,6 +36,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -47,6 +48,7 @@
                         <td><%=i.name%></td>
                         <td><%=i.email%></td>
                         <td><%=i.pass%></td>
+                        <td><img src="<%=i.img%>" alt="image" height="50px"></td>
                         <td><a href="/admin/update/<%=i.id%>">Update</a> || <a href="/admin/delete/<%=i.id%>">Delete</a> || <a href="/admin/mail/<%=i.id%>">send otp</a></td>
                       </tr>
                     <%}%>

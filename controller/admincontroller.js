@@ -1,6 +1,7 @@
 const admins = require("../model/admins");
 const express = require("express");
 const jwt = require('jsonwebtoken')
+const cloudnary = require('../helper/cloudinary')
 
 exports.home = (req, res) => {
   res.render("dashboard");
@@ -90,12 +91,23 @@ exports.update = async (req, res) => {
   // console.log(req.parems.id);
 };
 exports.updatePost = async (req, res) => {
-  // var data = await admins.findOne({ email: req.body.email });
+  // var deletes = await admins.findById(req.params.id)
   // if (data == null) {
+  console.log(deletes,"Hiii");
+    cloudnary.uploader.destroy(deletes.id,(err,data)=>{
+      if(err)
+      {
+        console.log(err);
+      }
+      console.log(data);
+    })
 
-    console.log(req.file);
+    var data = await cloudnary.uploader.upload(req.file.path)
+    console.log(data,"data");
+    req.body.img = data.secure_url
+    req.body.imgId = data.public_id
     var update = await admins.findByIdAndUpdate(req.params.id, req.body);
-    if (update) {
+    if (update) { 
       console.log("Data Updated Successfully!!!");
       req.flash("success", "Data Updated Successfully!!!");
       res.redirect("/admin/tableGeneral");

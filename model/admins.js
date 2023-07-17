@@ -11,6 +11,9 @@ const adminSchema =new mongoose.Schema({
     },
     img:{
         type: String
+    },
+    imgId:{
+        type: String
     }
 })
 
