@@ -1,0 +1,40 @@
+<%-include('userHeader')%>
+    <!-- Login -->
+    <div class="container">
+      <div class="login-form">
+        <form action="/user/register" method="post">
+          <h1>Sign Up</h1>
+          <p>
+            Please fill in this form to create an account. or
+            <a href="/user/login">Login</a>
+          </p>
+          <%if(messages.success){%>
+
+            <div class="alert alert-success">
+              <%=messages.success[0]%>
+              <%console.log(messages.success[0])%>
+            </div>
+            <%}%>
+          <label for="email">User Name</label>
+          <input type="text" placeholder="Enter UserName" name="name" required />
+
+
+          <label>Email</label>
+          <input type="text" placeholder="Enter Email" name="email" required />
+
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="pass"
+            required
+          />
+
+          <div class="buttons">
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <%-include('userFooter')%>

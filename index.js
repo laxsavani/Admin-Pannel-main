@@ -12,6 +12,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded())
 app.use(express.static(path.join(__dirname, 'assets')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(flash())
 app.use(cookieParser())
 
@@ -23,13 +24,14 @@ app.use(session({
     resave:false
 }))
 
-app.use('/admin', require('./routes/userrouter'));
+app.use('/admin', require('./routes/adminrouter'));
+app.use('/user', require('./routes/userrouter'));
 
 require('./config/dataBase')
 
 app.get('/', (req, res) => {
     console.log("ee");
-    res.redirect('/admin/register');
+    res.redirect('/user/home');
 })
 app.use((req, res) => {
     res.render('404');

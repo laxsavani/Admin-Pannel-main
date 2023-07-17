@@ -12,7 +12,12 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
+    <%if(messages.success){%>
 
+      <div class="alert alert-success my-2">
+        <%=messages.success%>
+      </div>
+      <%}%> 
     <section class="section">
       <div class="row">
         <div class="col-lg-6">
