@@ -3,6 +3,9 @@ const express = require("express");
 const jwt = require('jsonwebtoken')
 const cloudnary = require('../helper/cloudinary')
 
+// exports.register = (req, res) => {
+//   res.render("register");
+// };
 exports.home = (req, res) => {
   res.render("dashboard");
 };

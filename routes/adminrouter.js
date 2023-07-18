@@ -15,8 +15,10 @@ const {
     updatePost,
     deletes,
     mail,
+    // register
 } = require('../controller/admincontroller')
 
+// router.get('/register', register)
 router.post('/register', registerPost)
 router.get('/login', login)
 router.post('/login', loginPost)
