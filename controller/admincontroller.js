@@ -94,50 +94,59 @@ exports.update = async (req, res) => {
   // console.log(req.parems.id);
 };
 exports.updatePost = async (req, res) => {
-  // var deletes = await admins.findById(req.params.id)
-  // if (data == null) {
-  console.log(deletes,"Hiii");
-    cloudnary.uploader.destroy(deletes.id,(err,data)=>{
-      if(err)
+ 
+  try {
+    var deletess = await admins.findById(req.params.id)
+      if(deletess.imgId)
       {
-        console.log(err);
+        var ss=await cloudnary.uploader.destroy(deletess.imgId,(err,data)=>{
+          if(err)
+          {
+            console.log(err);
+          }
+          console.log(data);
+        })
       }
-      console.log(data);
-    })
-
-    var data = await cloudnary.uploader.upload(req.file.path)
-    console.log(data,"data");
-    req.body.img = data.secure_url
-    req.body.imgId = data.public_id
-    var update = await admins.findByIdAndUpdate(req.params.id, req.body);
-    if (update) { 
-      console.log("Data Updated Successfully!!!");
-      req.flash("success", "Data Updated Successfully!!!");
-      res.redirect("/admin/tableGeneral");
-    } else {
-      console.log("Data Not Update");
-      req.flash("success", "Data Not Update");
-      res.redirect("back");
-    }
-  // } else {
-  //   console.log("Email Already Exist");
-  //   req.flash("success", "Email Already Exist");
-  //   res.redirect("back");
-  // }
-};
-exports.deletes = async (req, res) => {
-  var data = await admins.findByIdAndDelete(req.params.id);
-  if (data) {
-    console.log("Data Deleted Successfully!!!");
-    req.flash("success", "Data Deleted Successfully!!!");
-    res.redirect("back");
-  } else {
-    console.log("Data Not Deletes");
-    req.flash("success", "Data Not Deletes");
-    res.redirect("back");
+      else
+      {
+        console.log("image id not define");
+      }
+    console.log(req.file);
+      if(req.file){
+        var data = await cloudnary.uploader.upload(req.file.path)
+      console.log(data,"data");
+      req.body.img = data.secure_url
+      req.body.imgId = data.public_id
+      var update = await admins.findByIdAndUpdate(req.params.id, req.body);
+      if (update) { 
+        console.log("Data Updated Successfully!!!");
+        req.flash("success", "Data Updated Successfully!!!");
+        res.redirect("/admin/tableGeneral");
+      } else {
+        console.log("Data Not Update");
+        req.flash("success", "Data Not Update");
+        res.redirect("back");
+      }
+      }
+      else
+      {
+        var update = await admins.findByIdAndUpdate(req.params.id,req.body);
+        if(update)
+        {
+          res.redirect('tableGeneral')
+        }
+        else
+        {
+          res.redirect('back')
+        }
+      }
+  } catch (error) {
+    console.log(error);
   }
-};
+
+}
 const nodemailer = require("nodemailer");
+
 exports.mail = async (req, res) => {
   var data = await admins.findById(req.params.id);
 
@@ -145,7 +154,7 @@ exports.mail = async (req, res) => {
     service: "gmail",
     auth: {
       user: "laxsavani4259@gmail.com",
-      pass: "zypxhxzjudxwvfmu",
+      pass: "zypxhxzjudxwvfmu", 
     },
   });
 
@@ -159,7 +168,7 @@ exports.mail = async (req, res) => {
   console.log(otp);
 
   if (info) {
-    console.log("OTP Send Successfully");
+    console.log("OTP Send Successfully"); 
     req.flash("success", "OTP Send Successfully");
     res.redirect('back')
   } else {
@@ -167,4 +176,17 @@ exports.mail = async (req, res) => {
     req.flash("success", "OTP Not Send");
     res.redirect('back')
   }
-};
+}
+
+exports.deletes = async (req, res) => {
+  var data = await admins.findByIdAndDelete(req.params.id);
+  if (data) {
+    console.log("Data Deleted Successfully!!!");
+    req.flash("success", "Data Deleted Successfully!!!");
+    res.redirect("back");
+  } else {
+    console.log("Data Not Deletes");
+    req.flash("success", "Data Not Deletes");
+    res.redirect("back");
+  }
+}
